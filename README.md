@@ -12,7 +12,7 @@ Used Technologies:
 1. `git clone https://github.com/monetree/hiver.git`
 2. `cd hiver`
 3. `virtualenv -p python3.6 env`
-4. `cd env && source bin/activate && cd ..``
+4. `cd env && source bin/activate && cd ..`
 5. `pip install -r requirements.txt`
 6. `python manage.py migrate runserver`
 7. `python manage.py runserver`
