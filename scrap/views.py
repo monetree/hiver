@@ -125,108 +125,42 @@ def get_hiver_data(request):
     title_tags = soup.find_all("title")
     desc_tags = soup.find_all("desc")
 
-    for i in p_tags:
-        p_tag_list.append(i.text)
 
-    for i in h1_tags:
-        h1_tag_list.append(i.text)
+    p_tag_list = [i.text for i in p_tags]
+    h1_tag_list = [i.text for i in h1_tags]
+    h2_tag_list = [i.text for i in h2_tags]
+    h4_tag_list = [i.text for i in h4_tags]
+    h3_tag_list = [i.text for i in h3_tags]
+    anchor_tag_list = [i.text for i in anchor_tags]
+    li_tag_list = [i.text for i in li_tags]
+    span_tag_list = [i.text for i in span_tags]
+    option_tag_list = [i.text for i in option_tags]
+    address_tag_list = [i.text for i in address_tags]
+    title_tag_list = [i.text for i in title_tags]
+    desc_tag_list = [i.text for i in desc_tags]
 
-    for i in h2_tags:
-        h2_tag_list.append(i.text)
 
-    for i in h3_tags:
-        h3_tag_list.append(i.text)
+    def common_tag_validator(tag_list):
+        temp_tags = []
+        for i in tag_list:
+            temp_tags.append(re.sub('[^A-Za-z0-9 ]+', '', i))
+        tag_list = []
+        tag_list = temp_tags
+        tag_list = [i.strip() for i in tag_list]
+        tag_list = [i for i in tag_list if i != ""]
+        tag_list = [",".join(i.split(" ")) for i in tag_list]
+        return tag_list
 
-    for i in h4_tags:
-        h4_tag_list.append(i.text)
-
-    for i in anchor_tags:
-        anchor_tag_list.append(i.text)
-
-    for i in li_tags:
-        li_tag_list.append(i.text)
-
-    for i in span_tags:
-        span_tag_list.append(i.text)
-
-    for i in option_tags:
-        option_tag_list.append(i.text)
-
-    for i in address_tags:
-        address_tag_list.append(i.text)
-
-    for i in title_tags:
-        title_tag_list.append(i.text)
-
-    for i in desc_tags:
-        desc_tag_list.append(i.text)
-
-    p_tag_list_temp = []
-    for i in p_tag_list:
-        p_tag_list_temp.append(re.sub('[^A-Za-z0-9 ]+', '', i))
-    p_tag_list = []
-    p_tag_list = p_tag_list_temp
-    p_tag_list = [i.strip() for i in p_tag_list]
-    p_tag_list = [i for i in p_tag_list if i != ""]
-    p_tag_list = [",".join(i.split(" ")) for i in p_tag_list]
-
+    p_tag_list = common_tag_validator(p_tag_list)
     h1_tag_list = [",".join(i.split(" ")) for i in h1_tag_list]
     h2_tag_list = [",".join(i.split(" ")) for i in h2_tag_list]
     h3_tag_list = [",".join(i.split(" ")) for i in h3_tag_list]
-
-    h4_tag_list_temp = []
-    for i in h4_tag_list:
-        h4_tag_list_temp.append(re.sub('[^A-Za-z0-9 ]+', '', i))
-    h4_tag_list = []
-    h4_tag_list = h4_tag_list_temp
-    h4_tag_list = [i.strip() for i in h4_tag_list]
-    h4_tag_list = [i for i in h4_tag_list if i != ""]
-    h4_tag_list = [",".join(i.split(" ")) for i in h4_tag_list]
-
-    anchor_tag_list_temp = []
-    for i in anchor_tag_list:
-        anchor_tag_list_temp.append(re.sub('[^A-Za-z0-9 ]+', '', i))
-    anchor_tag_list = []
-    anchor_tag_list = anchor_tag_list_temp
-    anchor_tag_list = [i.strip() for i in anchor_tag_list]
-    anchor_tag_list = [i for i in anchor_tag_list if i != ""]
-    anchor_tag_list = [",".join(i.split(" ")) for i in anchor_tag_list]
-
-    li_tag_list_temp = []
-    for i in li_tag_list:
-        li_tag_list_temp.append(re.sub('[^A-Za-z0-9 ]+', '', i))
-    li_tag_list = []
-    li_tag_list = li_tag_list_temp
-    li_tag_list = [i.strip() for i in li_tag_list]
-    li_tag_list = [i for i in li_tag_list if i != ""]
-    li_tag_list = [",".join(i.split(" ")) for i in li_tag_list]
-
-    address_tag_list_temp = []
-    for i in address_tag_list:
-        address_tag_list_temp.append(re.sub('[^A-Za-z0-9 ]+', '', i))
-    address_tag_list = []
-    address_tag_list = address_tag_list_temp
-    address_tag_list = [i.strip() for i in address_tag_list]
-    address_tag_list = [i for i in address_tag_list if i != ""]
-    address_tag_list = [",".join(i.split(" ")) for i in address_tag_list]
-
-    title_tag_list_temp = []
-    for i in title_tag_list:
-        title_tag_list_temp.append(",".join(i.split("|")))
-    title_tag_list = []
-    title_tag_list = title_tag_list_temp
-    title_tag_list = [i.strip() for i in title_tag_list]
-    title_tag_list = [i for i in title_tag_list if i != ""]
-    title_tag_list = [",".join(i.split(" ")) for i in title_tag_list]
-
-    option_tag_list_temp = []
-    for i in option_tag_list:
-        option_tag_list_temp.append(re.sub('[^A-Za-z]+', '', i))
-    option_tag_list = []
-    option_tag_list = option_tag_list_temp
-    option_tag_list = [i.strip() for i in option_tag_list]
-    option_tag_list = [i for i in option_tag_list if i != ""]
-    option_tag_list = [",".join(i.split(" ")) for i in option_tag_list]
+    h4_tag_list = common_tag_validator(h4_tag_list)
+    anchor_tag_list = common_tag_validator(anchor_tag_list)
+    li_tag_list = common_tag_validator(li_tag_list)
+    address_tag_list = common_tag_validator(address_tag_list)
+    title_tag_list = common_tag_validator(title_tag_list)
+    option_tag_list = common_tag_validator(option_tag_list)
 
 
     dict["p_tags"] = p_tag_list
@@ -257,10 +191,13 @@ def get_hiver_data(request):
         word_box.append(i)
     word_box = [i for i in word_box if not type(i) == int]
     word_box = {x:word_box.count(x) for x in word_box}
-    import operator
-    word_box = sorted(word_box.items(), key=operator.itemgetter(1))
-    word_box = word_box[-1::-5]
-    word_box = word_box[0:5]
-    word_box = [{i[0]:i[1]} for i in word_box]
-    dict2["occourances_of_word_desc"] = word_box
+    occourances_of_word_desc = []
+    for i,j in word_box.items():
+        if j > 13:occourances_of_word_desc.append({i:j})
+    # import operator
+    # word_box = sorted(word_box.items(), key=operator.itemgetter(1))
+    # word_box = word_box[-1::-5]
+    # word_box = word_box[0:5]
+    # word_box = [{i[0]:i[1]} for i in word_box]
+    dict2["occourances_of_word_desc"] = occourances_of_word_desc
     return JsonResponse(dict2,safe=False)
