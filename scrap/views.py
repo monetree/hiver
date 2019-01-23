@@ -38,41 +38,19 @@ def get_hiver_data_as_api(request):
     title_tags = soup.find_all("title")
     desc_tags = soup.find_all("desc")
 
-    for i in p_tags:
-        p_tag_list.append({"p":i.text})
 
-    for i in h1_tags:
-        h1_tag_list.append({"h1":i.text})
-
-    for i in h2_tags:
-        h2_tag_list.append({"h2":i.text})
-
-    for i in h3_tags:
-        h3_tag_list.append({"h3":i.text})
-
-    for i in h4_tags:
-        h4_tag_list.append({"h4":i.text})
-
-    for i in anchor_tags:
-        anchor_tag_list.append({"a":i.text})
-
-    for i in li_tags:
-        li_tag_list.append({"li":i.text})
-
-    for i in span_tags:
-        span_tag_list.append({"span":i.text})
-
-    for i in option_tags:
-        option_tag_list.append({"option":i.text})
-
-    for i in address_tags:
-        address_tag_list.append({"address":i.text})
-
-    for i in title_tags:
-        title_tag_list.append({"title":i.text})
-
-    for i in desc_tags:
-        desc_tag_list.append({"desc":i.text})
+    p_tag_list = [i.text for i in p_tags]
+    h1_tag_list = [i.text for i in h1_tags]
+    h2_tag_list = [i.text for i in h2_tags]
+    h4_tag_list = [i.text for i in h4_tags]
+    h3_tag_list = [i.text for i in h3_tags]
+    anchor_tag_list = [i.text for i in anchor_tags]
+    li_tag_list = [i.text for i in li_tags]
+    span_tag_list = [i.text for i in span_tags]
+    option_tag_list = [i.text for i in option_tags]
+    address_tag_list = [i.text for i in address_tags]
+    title_tag_list = [i.text for i in title_tags]
+    desc_tag_list = [i.text for i in desc_tags]
 
 
     dict["p_tags"] = p_tag_list
